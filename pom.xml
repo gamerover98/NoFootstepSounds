@@ -7,7 +7,14 @@
     <groupId>it.gamerover.nofootstep</groupId>
     <artifactId>NoFootstepSound</artifactId>
     <version>${revision}</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>core</module>
+        <module>legacy</module>
+        <module>flat</module>
+        <module>deploy</module>
+    </modules>
 
     <name>NoFootstepSound</name>
     <description>NoFootstepSound Plugin for Spigot and Paper</description>
@@ -29,8 +36,12 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.2.0</version>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M4</version>
+                <configuration>
+                    <trimStackTrace>false</trimStackTrace> <!-- Non nasconde l'origine degli errori -->
+                    <argLine>-Djava.library.path=target/natives</argLine>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -41,38 +52,6 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
-                <configuration>
-                    <trimStackTrace>false</trimStackTrace>
-                    <argLine>-Djava.library.path=target/natives</argLine>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <filters>
-                        <filter>
-                            <artifact>*:*</artifact>
-                            <excludes>
-                                <exclude>META-INF/maven/**</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
@@ -81,6 +60,14 @@
             <id>maven-central</id>
             <url>https://repo.maven.apache.org/maven2/</url>
             <layout>default</layout>
+        </repository>
+        <repository>
+            <id>papermc-repo</id>
+            <url>https://papermc.io/repo/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>https://repo.dmulloy2.net/nexus/repository/public/</url>
         </repository>
     </repositories>
 
