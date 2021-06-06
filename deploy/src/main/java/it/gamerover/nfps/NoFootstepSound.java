@@ -1,5 +1,8 @@
 package it.gamerover.nfps;
 
+import it.gamerover.nfps.flat.FlatHandler;
+import it.gamerover.nfps.legacy.LegacyHandler;
+import it.gamerover.nfps.reflection.ReflectionException;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,6 +15,15 @@ public class NoFootstepSound extends JavaPlugin {
     private static NoFootstepSound instance;
 
     /**
+     * Gets the plugin handler.
+     *
+     * > If the server is a legacy version (1.8.8 - 1.12.2) the handler will be LegacyHandler.
+     * > If the server is a flat version (1.13+) the handler will be FlatHandler.
+     */
+    @Getter
+    private CoreHandler handler;
+
+    /**
      * If true, the plugin will execute the onEnable method.
      */
     private boolean isPluginStartable = true;
@@ -21,6 +33,46 @@ public class NoFootstepSound extends JavaPlugin {
     public void onLoad() {
 
         NoFootstepSound.instance = this;
+
+        try {
+
+            CoreHandler.init(false);
+
+        } catch (ReflectionException firstEx) {
+
+            String serverVersion = firstEx.getMessage();
+            ServerVersion latestVersion = ServerVersion.getLatest(false);
+
+            String message = "Cannot find " + serverVersion + " server version." +
+                    " Attempting to start it with " + latestVersion.getVersion();
+            getLogger().warning(message);
+
+            try {
+
+                CoreHandler.init(true);
+
+            } catch (ReflectionException secondEx) {
+
+                getLogger().severe("Cannot start " + getName() + " with the current server version");
+                isPluginStartable = false;
+
+            }
+
+        }
+
+        if (!isPluginStartable) {
+            return;
+        }
+
+        ServerVersion serverVersion = CoreHandler.getServerVersion();
+        
+        if (serverVersion.isLegacy()) {
+            handler = new LegacyHandler(this);
+        } else {
+            handler = new FlatHandler(this);
+        }
+
+        handler.pluginLoading();
 
     }
 
@@ -34,13 +86,13 @@ public class NoFootstepSound extends JavaPlugin {
 
         }
 
-        // nothing to do at the moment.
+        handler.pluginEnabling();
 
     }
 
     @Override
     public void onDisable() {
-        // nothing to do at the moment.
+        handler.pluginDisabling();
     }
 
     /**
