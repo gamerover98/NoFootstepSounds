@@ -64,6 +64,13 @@
 
         <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
+            <artifactId>reflection</artifactId>
+            <version>${revision}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>core</artifactId>
             <version>${revision}</version>
             <scope>compile</scope>
