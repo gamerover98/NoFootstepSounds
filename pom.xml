@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>reflection</module>
         <module>core</module>
         <module>legacy</module>
         <module>flat</module>
