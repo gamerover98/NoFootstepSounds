@@ -5,14 +5,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>NoFootstepSound</artifactId>
         <groupId>it.gamerover.nofootstep</groupId>
+        <artifactId>NoFootstepSound</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>core</artifactId>
+    <artifactId>NoFootstepSound-Core</artifactId>
 
     <dependencies>
+
+        <!-- PROJECT LIBS -->
+
+        <dependency>
+            <groupId>it.gamerover.nofootstep</groupId>
+            <artifactId>NoFootstepSound-Reflection</artifactId>
+            <version>${revision}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- PROVIDED LIBS -->
 
         <dependency>
             <groupId>org.spigotmc</groupId>
@@ -22,9 +33,9 @@
         </dependency>
 
         <dependency>
-            <groupId>it.gamerover.nofootstep</groupId>
-            <artifactId>reflection</artifactId>
-            <version>${revision}</version>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>4.6.0</version>
             <scope>provided</scope>
         </dependency>
 

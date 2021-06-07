@@ -1,11 +1,16 @@
 package it.gamerover.nfps;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+import it.gamerover.nfps.packet.SoundPacketAdapter;
 import it.gamerover.nfps.reflection.ReflectionContainer;
 import it.gamerover.nfps.reflection.ReflectionException;
 import lombok.Getter;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.logging.Logger;
 
 public abstract class CoreHandler {
 
@@ -34,6 +39,12 @@ public abstract class CoreHandler {
     @Getter @NotNull
     private final Plugin plugin;
 
+    /**
+     * Gets the ProtocolManager instance of ProtocolLib.
+     */
+    @Getter
+    private ProtocolManager protocolManager;
+
     @SuppressWarnings("squid:S3010") // SonarLint: Remove this assignment of "instance".
     protected CoreHandler(@NotNull Plugin plugin) {
 
@@ -42,16 +53,40 @@ public abstract class CoreHandler {
 
     }
 
+    /**
+     * @return The not null Sound packet adapter implementation instance.
+     */
+    @NotNull
+    protected abstract SoundPacketAdapter getSoundPacketAdapter();
+
     protected void pluginLoading() {
-        // plugin loading.
+        this.protocolManager = ProtocolLibrary.getProtocolManager();
     }
 
     protected void pluginEnabling() {
-        // plugin enabling.
+
+        if (protocolManager == null) {
+            return;
+        }
+
+        Logger logger = plugin.getLogger();
+
+        protocolManager.addPacketListener(getSoundPacketAdapter());
+        logger.info(plugin.getName() + " successful enabled!");
+
     }
 
     protected void pluginDisabling() {
-        // plugin disabling.
+
+        if (protocolManager == null) {
+            return;
+        }
+
+        Logger logger = plugin.getLogger();
+
+        protocolManager.removePacketListeners(plugin);
+        logger.info(plugin.getName() + " successful disabled!");
+
     }
 
     /**

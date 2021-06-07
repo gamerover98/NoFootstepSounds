@@ -5,24 +5,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>NoFootstepSound</artifactId>
         <groupId>it.gamerover.nofootstep</groupId>
+        <artifactId>NoFootstepSound-Support</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>NoFootstepSound-Deploy</artifactId>
+    <artifactId>NoFootstepSound-Support-Legacy</artifactId>
 
     <build>
-        <finalName>No-Footstep-Sound-${project.version}</finalName>
+        <defaultGoal>clean package</defaultGoal>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
-                <configuration>
-                    <trimStackTrace>false</trimStackTrace>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -44,12 +42,27 @@
                             </excludes>
                         </filter>
                     </filters>
+                    <relocations>
+                        <relocation>
+                            <pattern>com.comphenix.packetwrapper</pattern>
+                            <shadedPattern>it.gamerover.nfps.libs.legacy.com.comphenix.packetwrapper</shadedPattern>
+                        </relocation>
+                    </relocations>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
+
+        <!-- PROJECT LIBS -->
+
+        <dependency>
+            <groupId>it.gamerover.nofootstep</groupId>
+            <artifactId>NoFootstepSound-Core</artifactId>
+            <version>${revision}</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!-- PROVIDED LIBS -->
 
@@ -60,42 +73,20 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- PROJECT LIBS -->
-
         <dependency>
-            <groupId>it.gamerover.nofootstep</groupId>
-            <artifactId>NoFootstepSound-Reflection</artifactId>
-            <version>${revision}</version>
-            <scope>compile</scope>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>4.6.0</version>
+            <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>it.gamerover.nofootstep</groupId>
-            <artifactId>NoFootstepSound-Core</artifactId>
-            <version>${revision}</version>
-            <scope>compile</scope>
-        </dependency>
+        <!-- COMPILED LIBS -->
 
-        <dependency>
-            <groupId>it.gamerover.nofootstep</groupId>
-            <artifactId>NoFootstepSound-Support-Flat</artifactId>
-            <version>${revision}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>it.gamerover.nofootstep</groupId>
-            <artifactId>NoFootstepSound-Support-Legacy</artifactId>
-            <version>${revision}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- This dependency will be relocated during the flat module compilation -->
         <dependency>
             <groupId>com.comphenix.packetwrapper</groupId>
             <artifactId>PacketWrapper</artifactId>
             <version>1.12.1-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>

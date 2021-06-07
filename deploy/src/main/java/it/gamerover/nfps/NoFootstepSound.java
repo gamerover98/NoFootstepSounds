@@ -1,12 +1,15 @@
 package it.gamerover.nfps;
 
-import it.gamerover.nfps.flat.FlatHandler;
-import it.gamerover.nfps.legacy.LegacyHandler;
+import it.gamerover.nfps.support.flat.FlatHandler;
+import it.gamerover.nfps.support.legacy.LegacyHandler;
 import it.gamerover.nfps.reflection.ReflectionException;
 import lombok.Getter;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class NoFootstepSound extends JavaPlugin {
+
+    private static final String PROTOCOL_LIB_PLUGIN_NAME = "ProtocolLib";
 
     /**
      * Gets the NoFootstepSound plugin instance.
@@ -57,6 +60,17 @@ public class NoFootstepSound extends JavaPlugin {
                 isPluginStartable = false;
 
             }
+
+        }
+
+        PluginManager pluginManager = getServer().getPluginManager();
+        boolean protocolLibInstalled = pluginManager.getPlugin(PROTOCOL_LIB_PLUGIN_NAME) != null;
+
+        if (!protocolLibInstalled) {
+
+            isPluginStartable = false;
+            getLogger().severe("Cannot start " + getName() + " because "
+                    + PROTOCOL_LIB_PLUGIN_NAME + " isn't installed!");
 
         }
 

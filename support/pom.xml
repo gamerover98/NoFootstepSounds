@@ -10,17 +10,13 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>NoFootstepSound-Reflection</artifactId>
+    <artifactId>NoFootstepSound-Support</artifactId>
+    <name>NoFootstepSound version support</name>
+    <packaging>pom</packaging>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-    </dependencies>
+    <modules>
+        <module>legacy</module>
+        <module>flat</module>
+    </modules>
 
 </project>
