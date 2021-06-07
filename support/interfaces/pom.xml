@@ -6,19 +6,23 @@
 
     <parent>
         <groupId>it.gamerover.nofootstep</groupId>
-        <artifactId>NoFootstepSound</artifactId>
+        <artifactId>NoFootstepSound-Support</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>NoFootstepSound-Support</artifactId>
-    <name>NoFootstepSound version support</name>
-    <packaging>pom</packaging>
+    <artifactId>NoFootstepSound-Support-Interfaces</artifactId>
 
-    <modules>
-        <module>interfaces</module>
-        <module>v1_8</module>
-        <module>legacy</module>
-        <module>flat</module>
-    </modules>
+    <dependencies>
+
+        <!-- PROVIDED LIBS -->
+
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
 
 </project>

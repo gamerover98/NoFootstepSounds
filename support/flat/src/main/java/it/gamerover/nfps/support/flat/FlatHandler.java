@@ -1,6 +1,7 @@
 package it.gamerover.nfps.support.flat;
 
 import it.gamerover.nfps.CoreHandler;
+import it.gamerover.nfps.ServerVersion;
 import it.gamerover.nfps.support.flat.packet.FlatSoundPacketAdapter;
 import it.gamerover.nfps.packet.SoundPacketAdapter;
 import org.bukkit.plugin.Plugin;
@@ -14,7 +15,9 @@ public class FlatHandler extends CoreHandler {
     public FlatHandler(@NotNull Plugin plugin) {
 
         super(plugin);
-        flatSoundPacketAdapter = new FlatSoundPacketAdapter(plugin);
+
+        ServerVersion currentVersion = getServerVersion();
+        flatSoundPacketAdapter = new FlatSoundPacketAdapter(plugin, currentVersion);
 
     }
 

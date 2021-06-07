@@ -1,6 +1,7 @@
 package it.gamerover.nfps.support.legacy;
 
 import it.gamerover.nfps.CoreHandler;
+import it.gamerover.nfps.ServerVersion;
 import it.gamerover.nfps.support.legacy.packet.LegacySoundPacketAdapter;
 import it.gamerover.nfps.packet.SoundPacketAdapter;
 import org.bukkit.plugin.Plugin;
@@ -14,7 +15,9 @@ public class LegacyHandler extends CoreHandler {
     public LegacyHandler(@NotNull Plugin plugin) {
 
         super(plugin);
-        legacySoundPacketAdapter = new LegacySoundPacketAdapter(plugin);
+
+        ServerVersion currentVersion = getServerVersion();
+        legacySoundPacketAdapter = new LegacySoundPacketAdapter(plugin, currentVersion);
 
     }
 
