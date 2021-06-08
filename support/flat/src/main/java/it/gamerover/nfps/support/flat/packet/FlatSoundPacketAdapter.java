@@ -19,10 +19,9 @@ public class FlatSoundPacketAdapter extends SoundPacketAdapter {
      */
     private final ISoundChecker<Sound> soundChecker;
 
-    @SuppressWarnings("unused") // unused currentVersion argument at the moment.
     public FlatSoundPacketAdapter(@NotNull Plugin plugin, @NotNull ServerVersion currentVersion) {
 
-        super(plugin);
+        super(plugin, currentVersion);
         soundChecker = new LatestFlatSoundChecker();
 
     }
