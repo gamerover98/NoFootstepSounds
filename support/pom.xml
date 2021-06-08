@@ -17,6 +17,7 @@
     <modules>
         <module>interfaces</module>
         <module>v1_8</module>
+        <module>v1_9</module>
         <module>legacy</module>
         <module>flat</module>
     </modules>

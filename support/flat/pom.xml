@@ -71,13 +71,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>it.gamerover.nofootstep</groupId>
-            <artifactId>NoFootstepSound-Support-v1_8</artifactId>
-            <version>${revision}</version>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- PROVIDED LIBS -->
 
         <dependency>

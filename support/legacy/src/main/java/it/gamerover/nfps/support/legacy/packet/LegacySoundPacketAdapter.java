@@ -31,6 +31,8 @@ public class LegacySoundPacketAdapter extends SoundPacketAdapter {
 
         if (ServerVersion.is1_8_8(currentVersion)) {
             soundChecker = new it.gamerover.nfps.support.v1_8.SoundChecker();
+        } else if (ServerVersion.is1_9(currentVersion)) {
+            soundChecker = new it.gamerover.nfps.support.v1_9.SoundChecker();
         } else {
             soundChecker = new LatestLegacySoundChecker();
         }
@@ -70,6 +72,7 @@ public class LegacySoundPacketAdapter extends SoundPacketAdapter {
     private static class LatestLegacySoundChecker implements ISoundChecker<Sound> {
 
         @Override
+        @SuppressWarnings("DuplicatedCode")
         public boolean isFootstepSound(@NotNull Sound sound) {
 
             switch (sound) {
@@ -84,26 +87,7 @@ public class LegacySoundPacketAdapter extends SoundPacketAdapter {
                 case BLOCK_SLIME_STEP:
                 case BLOCK_SNOW_STEP:
                 case BLOCK_STONE_STEP:
-                case BLOCK_WOOD_STEP:
-                case ENTITY_CHICKEN_STEP:
-                case ENTITY_COW_STEP:
-                case ENTITY_ENDERMITE_STEP:
-                case ENTITY_HORSE_STEP:
-                case ENTITY_HUSK_STEP:
-                case ENTITY_IRONGOLEM_STEP:
-                case ENTITY_LLAMA_STEP:
-                case ENTITY_PARROT_STEP:
-                case ENTITY_PIG_STEP:
-                case ENTITY_POLAR_BEAR_STEP:
-                case ENTITY_SHEEP_STEP:
-                case ENTITY_SILVERFISH_STEP:
-                case ENTITY_SKELETON_STEP:
-                case ENTITY_SPIDER_STEP:
-                case ENTITY_STRAY_STEP:
-                case ENTITY_WITHER_SKELETON_STEP:
-                case ENTITY_WOLF_STEP:
-                case ENTITY_ZOMBIE_STEP:
-                case ENTITY_ZOMBIE_VILLAGER_STEP: return true;
+                case BLOCK_WOOD_STEP: return true;
                 default: return false;
             }
 
