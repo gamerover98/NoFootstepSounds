@@ -22,7 +22,12 @@ public class FlatSoundPacketAdapter extends SoundPacketAdapter {
     public FlatSoundPacketAdapter(@NotNull Plugin plugin, @NotNull ServerVersion currentVersion) {
 
         super(plugin, currentVersion);
-        soundChecker = new LatestFlatSoundChecker();
+
+        if (ServerVersion.is1_13(currentVersion)) {
+            soundChecker = new it.gamerover.nfps.support.v1_13.SoundChecker();
+        } else {
+            soundChecker = new LatestFlatSoundChecker();
+        }
 
     }
 
@@ -60,32 +65,36 @@ public class FlatSoundPacketAdapter extends SoundPacketAdapter {
                 case BLOCK_SNOW_STEP:
                 case BLOCK_STONE_STEP:
                 case BLOCK_WOOD_STEP:
-                case ENTITY_CHICKEN_STEP:
-                case ENTITY_COW_STEP:
-                case ENTITY_ENDERMITE_STEP:
-                case ENTITY_HORSE_STEP:
-                case ENTITY_HUSK_STEP:
-                case ENTITY_LLAMA_STEP:
-                case ENTITY_PARROT_STEP:
-                case ENTITY_PIG_STEP:
-                case ENTITY_POLAR_BEAR_STEP:
-                case ENTITY_SHEEP_STEP:
-                case ENTITY_SILVERFISH_STEP:
-                case ENTITY_SKELETON_STEP:
-                case ENTITY_SPIDER_STEP:
-                case ENTITY_STRAY_STEP:
-                case ENTITY_WITHER_SKELETON_STEP:
-                case ENTITY_WOLF_STEP:
-                case ENTITY_ZOMBIE_STEP:
-                case ENTITY_ZOMBIE_VILLAGER_STEP:
                 case BLOCK_CORAL_BLOCK_STEP:
                 case BLOCK_SLIME_BLOCK_STEP:
                 case BLOCK_WET_GRASS_STEP:
                 case BLOCK_WOOL_STEP:
-                case ENTITY_DROWNED_STEP:
-                case ENTITY_IRON_GOLEM_STEP:
-                case ENTITY_HORSE_STEP_WOOD:
-                case ENTITY_SKELETON_HORSE_STEP_WATER: return true;
+                case BLOCK_BAMBOO_STEP:
+                case BLOCK_BASALT_STEP:
+                case BLOCK_CHAIN_STEP:
+                case BLOCK_FUNGUS_STEP:
+                case BLOCK_LANTERN_STEP:
+                case BLOCK_LODESTONE_STEP:
+                case BLOCK_NETHERRACK_STEP:
+                case BLOCK_NYLIUM_STEP:
+                case BLOCK_ROOTS_STEP:
+                case BLOCK_SCAFFOLDING_STEP:
+                case BLOCK_SHROOMLIGHT_STEP:
+                case BLOCK_STEM_STEP:
+                case BLOCK_VINE_STEP:
+                case BLOCK_ANCIENT_DEBRIS_STEP:
+                case BLOCK_BONE_BLOCK_STEP:
+                case BLOCK_GILDED_BLACKSTONE_STEP:
+                case BLOCK_HONEY_BLOCK_STEP:
+                case BLOCK_NETHER_BRICKS_STEP:
+                case BLOCK_NETHER_ORE_STEP:
+                case BLOCK_NETHER_SPROUTS_STEP:
+                case BLOCK_NETHERITE_BLOCK_STEP:
+                case BLOCK_SOUL_SAND_STEP:
+                case BLOCK_SOUL_SOIL_STEP:
+                case BLOCK_WART_BLOCK_STEP:
+                case BLOCK_WEEPING_VINES_STEP:
+                case BLOCK_NETHER_GOLD_ORE_STEP: return true;
                 default: return false;
             }
 
