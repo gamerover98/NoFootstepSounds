@@ -23,6 +23,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>it.gamerover.nofootstep</groupId>
+            <artifactId>NoFootstepSound-Config</artifactId>
+            <version>${revision}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- PROVIDED LIBS -->
 
         <dependency>

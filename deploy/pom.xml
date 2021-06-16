@@ -71,6 +71,13 @@
 
         <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
+            <artifactId>NoFootstepSound-Config</artifactId>
+            <version>${revision}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Core</artifactId>
             <version>${revision}</version>
             <scope>compile</scope>
@@ -165,6 +172,14 @@
             <groupId>com.comphenix.packetwrapper</groupId>
             <artifactId>PacketWrapper</artifactId>
             <version>1.12.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- This dependency will be relocated during the flat module compilation -->
+        <dependency>
+            <groupId>ch.jalu</groupId>
+            <artifactId>configme</artifactId>
+            <version>1.2.0</version>
             <scope>provided</scope>
         </dependency>
 

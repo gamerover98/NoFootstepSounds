@@ -2,6 +2,7 @@ package it.gamerover.nfps;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
+import it.gamerover.nfps.config.ConfigManager;
 import it.gamerover.nfps.packet.SoundPacketAdapter;
 import it.gamerover.nfps.reflection.ReflectionContainer;
 import it.gamerover.nfps.reflection.ReflectionException;
@@ -60,7 +61,10 @@ public abstract class CoreHandler {
     protected abstract SoundPacketAdapter getSoundPacketAdapter();
 
     protected void pluginLoading() {
+
         this.protocolManager = ProtocolLibrary.getProtocolManager();
+        ConfigManager.reload(plugin);
+
     }
 
     protected void pluginEnabling() {
