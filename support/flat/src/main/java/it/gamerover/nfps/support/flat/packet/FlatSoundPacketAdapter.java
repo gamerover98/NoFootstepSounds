@@ -27,6 +27,8 @@ public class FlatSoundPacketAdapter extends SoundPacketAdapter {
             soundChecker = new it.gamerover.nfps.support.v1_13.SoundChecker();
         } else if (ServerVersion.is1_14(currentVersion)) {
             soundChecker = new it.gamerover.nfps.support.v1_14.SoundChecker();
+        } else if (ServerVersion.is1_15(currentVersion)) {
+            soundChecker = new it.gamerover.nfps.support.v1_15.SoundChecker();
         } else {
             soundChecker = new LatestFlatSoundChecker();
         }

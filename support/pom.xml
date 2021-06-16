@@ -23,6 +23,7 @@
 		<module>v1_12</module>
 		<module>v1_13</module>
 		<module>v1_14</module>
+		<module>v1_15</module>
         <module>legacy</module>
         <module>flat</module>
     </modules>
