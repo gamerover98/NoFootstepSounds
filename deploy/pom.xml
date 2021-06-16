@@ -103,6 +103,13 @@
             <version>${revision}</version>
             <scope>compile</scope>
         </dependency>
+		
+		<dependency>
+            <groupId>it.gamerover.nofootstep</groupId>
+            <artifactId>NoFootstepSound-Support-v1_11</artifactId>
+            <version>${revision}</version>
+            <scope>compile</scope>
+        </dependency>
 
         <dependency>
             <groupId>it.gamerover.nofootstep</groupId>

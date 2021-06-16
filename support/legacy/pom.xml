@@ -85,9 +85,16 @@
             <scope>provided</scope>
         </dependency>
 		
-		        <dependency>
+		<dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_10</artifactId>
+            <version>${revision}</version>
+            <scope>provided</scope>
+        </dependency>
+		
+		<dependency>
+            <groupId>it.gamerover.nofootstep</groupId>
+            <artifactId>NoFootstepSound-Support-v1_11</artifactId>
             <version>${revision}</version>
             <scope>provided</scope>
         </dependency>
