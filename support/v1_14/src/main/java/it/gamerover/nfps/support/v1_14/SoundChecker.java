@@ -1,4 +1,4 @@
-package it.gamerover.nfps.support.v1_13;
+package it.gamerover.nfps.support.v1_14;
 
 import it.gamerover.nfps.support.interfaces.ISoundChecker;
 import org.bukkit.Sound;
@@ -23,7 +23,10 @@ public class SoundChecker  implements ISoundChecker<Sound> {
             case BLOCK_CORAL_BLOCK_STEP:
             case BLOCK_SLIME_BLOCK_STEP:
             case BLOCK_WET_GRASS_STEP:
-            case BLOCK_WOOL_STEP: return true;
+            case BLOCK_WOOL_STEP:
+            case BLOCK_BAMBOO_STEP:
+            case BLOCK_LANTERN_STEP:
+            case BLOCK_SCAFFOLDING_STEP: return true;
             default: return false;
         }
 
