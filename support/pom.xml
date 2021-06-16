@@ -20,6 +20,7 @@
         <module>v1_9</module>
 		<module>v1_10</module>
 		<module>v1_11</module>
+		<module>v1_12</module>
         <module>legacy</module>
         <module>flat</module>
     </modules>

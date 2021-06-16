@@ -7,6 +7,8 @@ import lombok.Getter;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.logging.Level;
+
 public class NoFootstepSound extends JavaPlugin {
 
     private static final String PROTOCOL_LIB_PLUGIN_NAME = "ProtocolLib";
@@ -80,13 +82,23 @@ public class NoFootstepSound extends JavaPlugin {
 
         ServerVersion serverVersion = CoreHandler.getServerVersion();
         
-        if (serverVersion.isLegacy()) {
-            handler = new LegacyHandler(this);
-        } else {
-            handler = new FlatHandler(this);
+        try {
+
+            if (serverVersion.isLegacy()) {
+                handler = new LegacyHandler(this);
+            } else {
+                handler = new FlatHandler(this);
+            }
+
+            handler.pluginLoading();
+
+        } catch (Exception generalEx) {
+
+            isPluginStartable = false;
+            getLogger().log(Level.SEVERE, "Cannot initialize the handler", generalEx);
+
         }
 
-        handler.pluginLoading();
 
     }
 

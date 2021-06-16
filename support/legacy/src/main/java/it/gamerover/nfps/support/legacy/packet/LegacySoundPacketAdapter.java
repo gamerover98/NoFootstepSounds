@@ -37,8 +37,10 @@ public class LegacySoundPacketAdapter extends SoundPacketAdapter {
             soundChecker = new it.gamerover.nfps.support.v1_10.SoundChecker();
         } else if (ServerVersion.is1_11(currentVersion)) {
             soundChecker = new it.gamerover.nfps.support.v1_11.SoundChecker();
+        } else if (ServerVersion.is1_12(currentVersion)) {
+            soundChecker = new it.gamerover.nfps.support.v1_12.SoundChecker();
         } else {
-            soundChecker = new LatestLegacySoundChecker();
+            throw new IllegalStateException("Your current legacy server version is not supported!");
         }
 
     }
@@ -66,36 +68,6 @@ public class LegacySoundPacketAdapter extends SoundPacketAdapter {
 
         Sound sound = wrapperPacket.getSoundEffect();
         return ((ISoundChecker<Sound>) soundChecker).isFootstepSound(sound);
-
-    }
-
-
-    /**
-     * 1.12.2 implementation.
-     */
-    private static class LatestLegacySoundChecker implements ISoundChecker<Sound> {
-
-        @Override
-        @SuppressWarnings("DuplicatedCode")
-        public boolean isFootstepSound(@NotNull Sound sound) {
-
-            switch (sound) {
-                case BLOCK_ANVIL_STEP:
-                case BLOCK_CLOTH_STEP:
-                case BLOCK_GLASS_STEP:
-                case BLOCK_GRASS_STEP:
-                case BLOCK_GRAVEL_STEP:
-                case BLOCK_LADDER_STEP:
-                case BLOCK_METAL_STEP:
-                case BLOCK_SAND_STEP:
-                case BLOCK_SLIME_STEP:
-                case BLOCK_SNOW_STEP:
-                case BLOCK_STONE_STEP:
-                case BLOCK_WOOD_STEP: return true;
-                default: return false;
-            }
-
-        }
 
     }
 
