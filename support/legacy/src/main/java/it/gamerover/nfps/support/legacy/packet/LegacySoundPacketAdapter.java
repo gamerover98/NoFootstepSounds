@@ -33,6 +33,8 @@ public class LegacySoundPacketAdapter extends SoundPacketAdapter {
             soundChecker = new it.gamerover.nfps.support.v1_8.SoundChecker();
         } else if (ServerVersion.is1_9(currentVersion)) {
             soundChecker = new it.gamerover.nfps.support.v1_9.SoundChecker();
+        } else if (ServerVersion.is1_10(currentVersion)) {
+            soundChecker = new it.gamerover.nfps.support.v1_10.SoundChecker();
         } else {
             soundChecker = new LatestLegacySoundChecker();
         }
