@@ -13,7 +13,7 @@ import static ch.jalu.configme.properties.PropertyInitializer.*;
 @SuppressWarnings("squid:S2386") // SonarLint: Make DEF_WORLDS member "protected".
 public class ConfigHolder implements SettingsHolder {
 
-    public static final double      DEF_RADIUS         = 2d;
+    public static final double      DEF_RADIUS         = 0.75D;
     public static final boolean     DEF_ALWAYS_ENABLED = false;
     public static final Set<String> DEF_WORLDS         = new HashSet<>(Collections.singletonList("YourWorldName"));
 
