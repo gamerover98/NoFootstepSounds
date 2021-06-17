@@ -2,14 +2,17 @@ package it.gamerover.nfps;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
+import it.gamerover.nfps.command.PluginCommand;
 import it.gamerover.nfps.config.ConfigManager;
 import it.gamerover.nfps.packet.SoundPacketAdapter;
 import it.gamerover.nfps.reflection.ReflectionContainer;
 import it.gamerover.nfps.reflection.ReflectionException;
 import lombok.Getter;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import xyz.tozymc.spigot.api.command.CommandController;
 
 import java.util.logging.Logger;
 
@@ -60,6 +63,18 @@ public abstract class CoreHandler {
     @NotNull
     protected abstract SoundPacketAdapter getSoundPacketAdapter();
 
+    /**
+     * Gets the command controller instance.
+     */
+    @Getter
+    private CommandController commandController;
+
+    /**
+     * Gets the main plugin command.
+     */
+    @Getter
+    private PluginCommand pluginCommand;
+
     protected void pluginLoading() {
 
         this.protocolManager = ProtocolLibrary.getProtocolManager();
@@ -76,6 +91,10 @@ public abstract class CoreHandler {
         Logger logger = plugin.getLogger();
 
         protocolManager.addPacketListener(getSoundPacketAdapter());
+
+        commandController = new CommandController((JavaPlugin) plugin);
+        pluginCommand     = new PluginCommand(commandController);
+
         logger.info(plugin.getName() + " successful enabled!");
 
     }
@@ -89,6 +108,11 @@ public abstract class CoreHandler {
         Logger logger = plugin.getLogger();
 
         protocolManager.removePacketListeners(plugin);
+
+        if (commandController != null && pluginCommand != null) {
+            commandController.removeCommand(pluginCommand);
+        }
+
         logger.info(plugin.getName() + " successful disabled!");
 
     }
