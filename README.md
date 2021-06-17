@@ -16,7 +16,7 @@ no one's stopping you to try it on your server ✨!
 
 ## Installation
 
-- Put the **No-Footstep-Sound-1.0-jar** in you plugins folder.
+- Put the **No-Footstep-Sound-1.0.jar** file in your plugins folder.
 - Start/Restart the server or load it with Plugman plugin.
 
 ## Commands and permissions
