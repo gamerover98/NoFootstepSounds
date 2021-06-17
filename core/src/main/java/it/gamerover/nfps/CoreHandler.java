@@ -110,7 +110,15 @@ public abstract class CoreHandler {
         protocolManager.removePacketListeners(plugin);
 
         if (commandController != null && pluginCommand != null) {
-            commandController.removeCommand(pluginCommand);
+
+            try {
+
+                commandController.removeCommand(pluginCommand);
+
+            } catch (IllegalStateException isEx) {
+                // nothing to do.
+            }
+
         }
 
         logger.info(plugin.getName() + " successful disabled!");
