@@ -41,7 +41,7 @@ public abstract class SoundPacketAdapter extends PacketAdapter {
         }
 
         PacketContainer packet = event.getPacket();
-        event.setCancelled(handleSoundPacketSending(player, packet));
+        event.setCancelled(isFootStepSound(player, packet));
 
     }
 
@@ -49,8 +49,8 @@ public abstract class SoundPacketAdapter extends PacketAdapter {
      *
      * @param player The not null instance of the player.
      * @param packet The not null instance of the packet container.
-     * @return True if the event is cancelled.
+     * @return True if the packet contains a footstep sound.
      */
-    protected abstract boolean handleSoundPacketSending(@NotNull Player player, @NotNull PacketContainer packet);
+    protected abstract boolean isFootStepSound(@NotNull Player player, @NotNull PacketContainer packet);
 
 }

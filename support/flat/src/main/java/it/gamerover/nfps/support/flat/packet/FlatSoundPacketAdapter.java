@@ -41,7 +41,7 @@ public class FlatSoundPacketAdapter extends SoundPacketAdapter {
     }
 
     @Override
-    protected boolean handleSoundPacketSending(@NotNull Player player, @NotNull PacketContainer packet) {
+    protected boolean isFootStepSound(@NotNull Player player, @NotNull PacketContainer packet) {
 
         WrapperPlayServerNamedSoundEffect wrapperPacket = new WrapperPlayServerNamedSoundEffect(packet);
         SoundCategory soundCategory = wrapperPacket.getSoundCategory();

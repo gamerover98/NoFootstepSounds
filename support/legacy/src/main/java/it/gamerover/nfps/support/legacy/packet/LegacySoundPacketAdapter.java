@@ -47,7 +47,7 @@ public class LegacySoundPacketAdapter extends SoundPacketAdapter {
 
     @Override
     @SuppressWarnings("unchecked")
-    protected boolean handleSoundPacketSending(@NotNull Player player, @NotNull PacketContainer packet) {
+    protected boolean isFootStepSound(@NotNull Player player, @NotNull PacketContainer packet) {
 
         if (ServerVersion.is1_8_8(currentVersion)) {
 
