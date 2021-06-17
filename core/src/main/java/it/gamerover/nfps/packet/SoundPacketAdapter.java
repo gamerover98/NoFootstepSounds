@@ -6,10 +6,15 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import it.gamerover.nfps.ServerVersion;
+import it.gamerover.nfps.config.ConfigManager;
 import lombok.Getter;
+import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public abstract class SoundPacketAdapter extends PacketAdapter {
 
@@ -41,7 +46,25 @@ public abstract class SoundPacketAdapter extends PacketAdapter {
         }
 
         PacketContainer packet = event.getPacket();
-        event.setCancelled(isFootStepSound(player, packet));
+        boolean result = isFootStepSound(player, packet);
+
+        if (thereAreNearbyPlayers(player)) {
+
+            if (!ConfigManager.isAlwaysEnabled()) {
+
+                World world = player.getWorld();
+                String worldName = world.getName();
+
+                // if the world is not listed, the sound will be sent to the player.
+                if (!ConfigManager.containsWorld(worldName)) {
+                    return;
+                }
+
+            }
+
+            event.setCancelled(result);
+
+        }
 
     }
 
@@ -52,5 +75,33 @@ public abstract class SoundPacketAdapter extends PacketAdapter {
      * @return True if the packet contains a footstep sound.
      */
     protected abstract boolean isFootStepSound(@NotNull Player player, @NotNull PacketContainer packet);
+
+    /**
+     * @param player The not null player instance.
+     * @return True if there is at least one player near him.
+     */
+    @SuppressWarnings("squid:S1854") // SonarLint: Remove this useless assignment to local variable "nearbyPlayers".
+    private boolean thereAreNearbyPlayers(@NotNull Player player) {
+
+        double radius = ConfigManager.getRadius();
+        List<Entity> nearbyEntities = player.getNearbyEntities(radius, radius, radius);
+
+        for (Entity entity : nearbyEntities) {
+
+            if (entity instanceof Player) {
+
+                Player current = (Player) entity;
+
+                if (current != player) {
+                    return true;
+                }
+
+            }
+
+        }
+
+        return false;
+
+    }
 
 }
