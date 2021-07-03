@@ -23,7 +23,7 @@
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <revision>1.0</revision> <!-- don't edit this property name -->
+        <revision>1.1</revision> <!-- don't edit this property name -->
     </properties>
 
     <build>
