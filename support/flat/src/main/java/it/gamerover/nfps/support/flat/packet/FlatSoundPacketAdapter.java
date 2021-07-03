@@ -34,6 +34,8 @@ public class FlatSoundPacketAdapter extends SoundPacketAdapter {
             soundChecker = new it.gamerover.nfps.support.v1_15.SoundChecker();
         } else if (ServerVersion.is1_16(currentVersion)) {
             soundChecker = new it.gamerover.nfps.support.v1_16.SoundChecker();
+        } else if (ServerVersion.is1_17(currentVersion)) {
+            soundChecker = new it.gamerover.nfps.support.v1_17.SoundChecker();
         } else {
             soundChecker = new FutureFlatSoundChecker();
         }
@@ -63,7 +65,7 @@ public class FlatSoundPacketAdapter extends SoundPacketAdapter {
         /**
          * The latest supported version by the plugin.
          */
-        private final ISoundChecker<Sound> latestSupportedChecker = new it.gamerover.nfps.support.v1_16.SoundChecker();
+        private final ISoundChecker<Sound> latestSupportedChecker = new it.gamerover.nfps.support.v1_17.SoundChecker();
 
         @Override
         public boolean isFootstepSound(@NotNull Sound sound) {
