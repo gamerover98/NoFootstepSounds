@@ -6,7 +6,7 @@ no one's stopping you to try it on your server ✨!
 
 ## Features
 
-- You can set a radius of effectiveness where to prevent the footstep sounds.
+- You can set a radius of effectiveness were to prevent the footstep sounds.
 - Always-enabled or per world selection.
 
 ## Prerequisites
@@ -17,7 +17,7 @@ no one's stopping you to try it on your server ✨!
 ## Installation
 
 - Put the **No-Footstep-Sound-1.0.jar** file in your plugins folder.
-- Start/Restart the server or load it with Plugman plugin.
+- Start/Restart the server or load it with the Plugman plugin.
 
 ## Commands and permissions
 
