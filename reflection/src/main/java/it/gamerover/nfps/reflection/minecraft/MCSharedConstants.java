@@ -29,34 +29,53 @@ public final class MCSharedConstants extends MCReflection {
 
         super(completeServerVersion);
 
-        Class<?> sharedConstantsClass = super.getMinecraftClass(SHARED_CONSTANTS_CLASS_NAME);
+        // If it is after 1.16.5
+        if (!isBefore1_17(completeServerVersion)) {
+            this.gameVersionInstance = obtainGameVersion();
+        } else {
+            this.gameVersionInstance = null;
+        }
 
+    }
+
+    private Object obtainGameVersion() throws ReflectionException {
+
+        Class<?> sharedConstantsClass = super.getMinecraftClass(SHARED_CONSTANTS_CLASS_NAME);
         Method getGameVersionMethod;
-        Object gameVersion;
 
         try {
 
             getGameVersionMethod = super.getMethod(sharedConstantsClass, GET_GAME_VERSION_METHOD_NAME_N1);
-            gameVersion = getGameVersionMethod.invoke(null);
+            return getGameVersionMethod.invoke(null);
 
         } catch (Exception ex1) {
+
+            StringBuilder errorMessage = new StringBuilder("Cannot find: ");
+
+            errorMessage.append(getMinecraftPackage());
+            errorMessage.append('.');
+            errorMessage.append(SHARED_CONSTANTS_CLASS_NAME);
+            errorMessage.append('.');
+            errorMessage.append(GET_GAME_VERSION_METHOD_NAME_N1);
+            errorMessage.append("() ");
 
             try {
 
                 getGameVersionMethod = super.getMethod(sharedConstantsClass, GET_GAME_VERSION_METHOD_NAME_N2);
-                gameVersion = getGameVersionMethod.invoke(null);
+                return getGameVersionMethod.invoke(null);
 
             } catch (Exception ex2) {
 
-                String errorMessage = getMinecraftPackage() + "." + SHARED_CONSTANTS_CLASS_NAME
-                        + "." + GET_GAME_VERSION_METHOD_NAME_N1 + "() method";
-                throw new ReflectionException(errorMessage, ex2);
+                errorMessage.append("or ");
+                errorMessage.append(GET_GAME_VERSION_METHOD_NAME_N2);
+                errorMessage.append("() ");
+                errorMessage.append("methods");
 
             }
 
-        }
+            throw new ReflectionException(errorMessage.toString(), ex1);
 
-        this.gameVersionInstance = gameVersion;
+        }
 
     }
 

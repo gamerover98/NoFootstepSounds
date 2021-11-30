@@ -7,6 +7,8 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Locale;
+
 /**
  * Specific reflection class for the Native Minecraft package.
  */
@@ -21,13 +23,15 @@ public class MCReflection extends Reflection {
      * The not compliant Native Minecraft package.
      * This string will be concatenated with the complete server version.
      */
-    private static final String BEFORE_1_17_MINECRAFT_PACKAGE = "net.minecraft.server";
+    private static final String MINECRAFT_PACKAGE = "net.minecraft";
+
+    private static final String SERVER_WORD = "server";
 
     /**
      * The not compliant Native Minecraft package.
      * This string will be concatenated with the complete server version.
      */
-    private static final String MINECRAFT_PACKAGE = "net.minecraft";
+    private static final String BEFORE_1_17_MINECRAFT_PACKAGE = MINECRAFT_PACKAGE + '.' + SERVER_WORD;
 
     /**
      * The complete Native Minecraft package (Ex: net.minecraft.server.v1_8_R3.ClassName).
@@ -49,33 +53,53 @@ public class MCReflection extends Reflection {
     }
 
     /**
-     * @param completeServerVersion The NMS complete server version like V1_8_R3
+     * The completeServerVersion will be used until 1.16.5 to complete the NMS package.
+     * > net.minecraft.v1_16_R1.*;
+     *
+     * From 1.17, the NMS package has changed: net.minecraft.server.*
+     * > This new package has sub-packages like net.minecraft.server.something.everything;
+     *
+     * @param completeServerVersion The not-null NMS complete server version like V1_8_R3.
+     * @param subPackage The nullable/empty string of a sub package of net.minecraft.*.#.
      */
     public MCReflection(@NotNull String completeServerVersion, @Nullable String subPackage) {
 
         if (subPackage == null) {
             subPackage = "";
-        } else {
-            subPackage = subPackage.trim();
         }
 
-        if (isBeforeCaveAndCliffsUpdate(completeServerVersion)) {
+        subPackage = subPackage.trim();
+        String pack;
 
-            if (subPackage.isEmpty()) {
-                this.minecraftPackage = BEFORE_1_17_MINECRAFT_PACKAGE + '.' + completeServerVersion + '.' + subPackage;
-            } else {
-                this.minecraftPackage = BEFORE_1_17_MINECRAFT_PACKAGE + '.' + completeServerVersion;
+        // Before 1.17
+        if (isBefore1_17(completeServerVersion)) {
+
+            // net.minecraft.server.v1_16_R3
+            pack = BEFORE_1_17_MINECRAFT_PACKAGE + '.' + completeServerVersion;
+
+            /*
+             * From 1.8 to 1.16.5, if the sub-folder starts with "server", it will
+             * be trimmed from string.
+             *
+             * Also, there are no sub-packages on the net.minecraft.server
+             * package but, this feature is available.
+             */
+            if (subPackage.toLowerCase(Locale.ROOT).startsWith(SERVER_WORD)) {
+
+                subPackage = subPackage.substring(SERVER_WORD.length());
+                subPackage = subPackage.trim();
+
             }
 
         } else {
-
-            if (subPackage.isEmpty()) {
-                this.minecraftPackage = MINECRAFT_PACKAGE;
-            } else {
-                this.minecraftPackage = MINECRAFT_PACKAGE + '.' + subPackage;
-            }
-
+            pack = MINECRAFT_PACKAGE;
         }
+
+        if (!subPackage.isEmpty()) {
+            pack = pack + '.' + subPackage;
+        }
+
+        this.minecraftPackage = pack;
 
     }
 
@@ -110,7 +134,8 @@ public class MCReflection extends Reflection {
      * @param version The not null complete server version: v1_16_R3
      * @return True if the server version is before 1.17 caves & cliffs update.
      */
-    private static boolean isBeforeCaveAndCliffsUpdate(@NotNull String version) {
+    @SuppressWarnings("squid:S100") // SonarLint: Rename this method name to match the regular expression.
+    protected static boolean isBefore1_17(@NotNull String version) {
 
         if (!version.startsWith("v")) {
             throw new IllegalArgumentException("The minecraft version needs to start with 'v'");

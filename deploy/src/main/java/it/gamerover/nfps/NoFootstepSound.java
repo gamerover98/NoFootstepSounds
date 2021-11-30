@@ -45,12 +45,14 @@ public class NoFootstepSound extends JavaPlugin {
 
         } catch (ReflectionException firstEx) {
 
+            boolean canThrowException = false;
+
             ServerVersion latestVersion = ServerVersion.getLatest(false);
             String message = "Cannot find the current server version, "
-                    + "attempting to start the plugin with "
-                    + latestVersion.getVersion() + " version ...";
+                    + "attempting to start the plugin with the latest ("
+                    + latestVersion.getVersion() + ") supported version ...";
 
-            getLogger().log(Level.SEVERE, message, firstEx);
+            getLogger().log(Level.WARNING, message);
 
             try {
 
@@ -59,7 +61,16 @@ public class NoFootstepSound extends JavaPlugin {
             } catch (ReflectionException secondEx) {
 
                 getLogger().severe("Cannot start " + getName() + " with the current server version");
+
                 isPluginStartable = false;
+                canThrowException = true;
+
+            }
+
+            if (canThrowException) {
+
+                message = "Please report this error on the issues page on GitHub or Spigot forum";
+                getLogger().log(Level.SEVERE, message, firstEx);
 
             }
 
