@@ -111,7 +111,7 @@ public class Reflection {
                 method = clazz.getMethod(methodName, methodParams);
 
             } catch (NoSuchMethodException nsmEx) {
-                throw new ReflectionException("Cannot found any method called '"
+                throw new ReflectionException("Cannot find any method called '"
                         + methodName + "' in " + clazz.getName() + " class");
             }
 

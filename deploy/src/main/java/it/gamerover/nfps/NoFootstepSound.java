@@ -45,12 +45,12 @@ public class NoFootstepSound extends JavaPlugin {
 
         } catch (ReflectionException firstEx) {
 
-            String serverVersion = firstEx.getMessage();
             ServerVersion latestVersion = ServerVersion.getLatest(false);
+            String message = "Cannot find the current server version, "
+                    + "attempting to start the plugin with "
+                    + latestVersion.getVersion() + " version ...";
 
-            String message = "Cannot find " + serverVersion + " server version." +
-                    " Attempting to start it with " + latestVersion.getVersion();
-            getLogger().warning(message);
+            getLogger().log(Level.SEVERE, message, firstEx);
 
             try {
 
@@ -118,7 +118,13 @@ public class NoFootstepSound extends JavaPlugin {
 
     @Override
     public void onDisable() {
+
+        if (handler == null) {
+            return;
+        }
+
         handler.pluginDisabling();
+
     }
 
     /**

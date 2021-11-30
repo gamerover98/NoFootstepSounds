@@ -2,7 +2,10 @@ package it.gamerover.nfps.reflection.minecraft;
 
 import it.gamerover.nfps.reflection.Reflection;
 import it.gamerover.nfps.reflection.ReflectionException;
+import lombok.AccessLevel;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Specific reflection class for the Native Minecraft package.
@@ -18,7 +21,13 @@ public class MCReflection extends Reflection {
      * The not compliant Native Minecraft package.
      * This string will be concatenated with the complete server version.
      */
-    private static final String MINECRAFT_PACKAGE   = "net.minecraft.server";
+    private static final String BEFORE_1_17_MINECRAFT_PACKAGE = "net.minecraft.server";
+
+    /**
+     * The not compliant Native Minecraft package.
+     * This string will be concatenated with the complete server version.
+     */
+    private static final String MINECRAFT_PACKAGE = "net.minecraft";
 
     /**
      * The complete Native Minecraft package (Ex: net.minecraft.server.v1_8_R3.ClassName).
@@ -28,14 +37,44 @@ public class MCReflection extends Reflection {
      *     the revision version (Ex: net.minecraft.server.ClassName)
      * </p>
      */
+    @Getter(AccessLevel.PROTECTED)
     private final String minecraftPackage;
 
-    public MCReflection(String completeServerVersion) {
+
+    /**
+     * @param completeServerVersion The NMS complete server version like V1_8_R3
+     */
+    public MCReflection(@NotNull String completeServerVersion) {
+        this(completeServerVersion, null);
+    }
+
+    /**
+     * @param completeServerVersion The NMS complete server version like V1_8_R3
+     */
+    public MCReflection(@NotNull String completeServerVersion, @Nullable String subPackage) {
+
+        if (subPackage == null) {
+            subPackage = "";
+        } else {
+            subPackage = subPackage.trim();
+        }
 
         if (isBeforeCaveAndCliffsUpdate(completeServerVersion)) {
-            this.minecraftPackage = MINECRAFT_PACKAGE + '.' + completeServerVersion;
+
+            if (subPackage.isEmpty()) {
+                this.minecraftPackage = BEFORE_1_17_MINECRAFT_PACKAGE + '.' + completeServerVersion + '.' + subPackage;
+            } else {
+                this.minecraftPackage = BEFORE_1_17_MINECRAFT_PACKAGE + '.' + completeServerVersion;
+            }
+
         } else {
-            this.minecraftPackage = MINECRAFT_PACKAGE;
+
+            if (subPackage.isEmpty()) {
+                this.minecraftPackage = MINECRAFT_PACKAGE;
+            } else {
+                this.minecraftPackage = MINECRAFT_PACKAGE + '.' + subPackage;
+            }
+
         }
 
     }
@@ -56,7 +95,7 @@ public class MCReflection extends Reflection {
      * Gets a Native Minecraft class from net.minecraft.server package.
      *
      * @param packageName If in the future Spigot decide to add another sub-package, use it.
-     *                    By default this value is "".
+     *                    By default, this value is "".
      * @param className The not null class name.
      * @return The not null Native class.
      * @throws ReflectionException If the class doesn't exist.

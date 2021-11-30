@@ -7,6 +7,7 @@ import it.gamerover.nfps.config.ConfigManager;
 import it.gamerover.nfps.packet.SoundPacketAdapter;
 import it.gamerover.nfps.reflection.ReflectionContainer;
 import it.gamerover.nfps.reflection.ReflectionException;
+import it.gamerover.nfps.reflection.minecraft.MCMinecraftVersion;
 import lombok.Getter;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -127,7 +128,7 @@ public abstract class CoreHandler {
 
     /**
      * Initialize the CoreHandler by loading static stuff like reflections and server version.
-     * @throws ReflectionException Thrown due to a reflections error.
+     * @throws ReflectionException Thrown due to a reflections' error.
      */
     static void init(boolean force) throws ReflectionException {
 
@@ -135,10 +136,22 @@ public abstract class CoreHandler {
             reflectionContainer = new ReflectionContainer();
         }
 
-        String stringVersion = reflectionContainer.getMinecraft().getMinecraftServer().getVersion();
-        serverVersion = ServerVersion.getVersion(stringVersion);
+        String stringVersion;
+        MCMinecraftVersion minecraftVersion = reflectionContainer.getMinecraft().getMinecraftVersion();
+
+        if (minecraftVersion != null) {
+            stringVersion = minecraftVersion.getReleaseTarget();
+        } else {
+            stringVersion = reflectionContainer.getMinecraft().getMinecraftServer().getVersion();
+        }
+
+        if (stringVersion != null) {
+            serverVersion = ServerVersion.getVersion(stringVersion);
+        }
 
         if (serverVersion == null) {
+
+            stringVersion = "unknown";
 
             if (force) {
                 serverVersion = ServerVersion.getLatest(false);

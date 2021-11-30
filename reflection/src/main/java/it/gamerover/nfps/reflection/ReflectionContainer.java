@@ -2,6 +2,8 @@ package it.gamerover.nfps.reflection;
 
 import it.gamerover.nfps.reflection.craftbukkit.CBCraftServer;
 import it.gamerover.nfps.reflection.minecraft.MCMinecraftServer;
+import it.gamerover.nfps.reflection.minecraft.MCMinecraftVersion;
+import it.gamerover.nfps.reflection.minecraft.MCSharedConstants;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -12,6 +14,13 @@ public final class ReflectionContainer {
     private static final String DOT = ".";
     private static final String COMMA = ",";
 
+    /**
+     * The version name from the package: org.bukkit.craftbukkit.1_#_R§
+     *
+     * Where:
+     * - # is the version (8, 12, 17, ...)
+     * - § is the Revision (1, 2, 3, ...)
+     */
     private static final String COMPLETE_SERVER_VERSION = calculateServerVersion();
 
     /**
@@ -48,20 +57,38 @@ public final class ReflectionContainer {
     @Getter
     public final class Minecraft {
 
-        private final MCMinecraftServer minecraftServer;
+        private final MCMinecraftServer  minecraftServer;
+        private final MCSharedConstants  sharedConstants;
+        private       MCMinecraftVersion minecraftVersion;
 
         private Minecraft(String completeServerVersion) throws ReflectionException {
 
             Object minecraftServerInstance = craftBukkit.getCraftServer().getMinecraftServerInstance();
+
             this.minecraftServer = new MCMinecraftServer(completeServerVersion, minecraftServerInstance);
+            this.sharedConstants = new MCSharedConstants(completeServerVersion);
+
+            Object gameVersionInstance = sharedConstants.getGameVersionInstance();
+
+            // available from Spigot 1.17
+            if (gameVersionInstance != null) {
+                this.minecraftVersion = new MCMinecraftVersion(completeServerVersion, gameVersionInstance);
+            }
 
         }
 
     }
 
     /**
+     * Gets the version name from the package: org.bukkit.craftbukkit.1_#_R§
+     *
+     * Where:
+     * - # is the version (8, 12, 17, ...)
+     * - § is the Revision (1, 2, 3, ...)
+     *
      * @return The internal minecraft version of the craftbukkit package name.
      */
+    @NotNull
     private static String calculateServerVersion() {
 
         Server server = Bukkit.getServer();
