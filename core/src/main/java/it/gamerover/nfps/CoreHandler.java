@@ -50,6 +50,18 @@ public abstract class CoreHandler {
     @Getter
     private ProtocolManager protocolManager;
 
+    /**
+     * Gets the command controller instance.
+     */
+    @Getter
+    private CommandController commandController;
+
+    /**
+     * Gets the main plugin command.
+     */
+    @Getter
+    private PluginCommand pluginCommand;
+
     @SuppressWarnings("squid:S3010") // SonarLint: Remove this assignment of "instance".
     protected CoreHandler(@NotNull Plugin plugin) {
 
@@ -65,17 +77,8 @@ public abstract class CoreHandler {
     protected abstract SoundPacketAdapter getSoundPacketAdapter();
 
     /**
-     * Gets the command controller instance.
+     * Invoked when the plugin is loading.
      */
-    @Getter
-    private CommandController commandController;
-
-    /**
-     * Gets the main plugin command.
-     */
-    @Getter
-    private PluginCommand pluginCommand;
-
     protected void pluginLoading() {
 
         this.protocolManager = ProtocolLibrary.getProtocolManager();
@@ -83,6 +86,9 @@ public abstract class CoreHandler {
 
     }
 
+    /**
+     * Invoked when the plugin is enabling.
+     */
     protected void pluginEnabling() {
 
         if (protocolManager == null) {
@@ -100,6 +106,9 @@ public abstract class CoreHandler {
 
     }
 
+    /**
+     * Invoked when the plugin is disabling.
+     */
     protected void pluginDisabling() {
 
         if (protocolManager == null) {
