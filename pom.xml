@@ -39,7 +39,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M4</version>
                 <configuration>
-                    <trimStackTrace>false</trimStackTrace> <!-- Non nasconde l'origine degli errori -->
+                    <trimStackTrace>false</trimStackTrace> <!-- It prevents the hiding of the errors' origin -->
                     <argLine>-Djava.library.path=target/natives</argLine>
                 </configuration>
             </plugin>
