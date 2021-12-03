@@ -3,7 +3,7 @@ package it.gamerover.nfps.config.holder;
 import ch.jalu.configme.Comment;
 import ch.jalu.configme.SettingsHolder;
 import ch.jalu.configme.properties.Property;
-import it.gamerover.nfps.config.property.StringSetProperty;
+import ch.jalu.configme.properties.StringSetProperty;
 
 import java.util.*;
 
