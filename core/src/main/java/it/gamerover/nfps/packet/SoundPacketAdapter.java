@@ -5,7 +5,7 @@ import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
-import it.gamerover.nfps.ServerVersion;
+import it.gamerover.nfps.reflection.ServerVersion;
 import it.gamerover.nfps.config.ConfigManager;
 import lombok.Getter;
 import org.bukkit.World;

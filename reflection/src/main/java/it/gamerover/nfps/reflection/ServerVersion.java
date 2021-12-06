@@ -1,4 +1,4 @@
-package it.gamerover.nfps;
+package it.gamerover.nfps.reflection;
 
 import lombok.AccessLevel;
 import lombok.Getter;

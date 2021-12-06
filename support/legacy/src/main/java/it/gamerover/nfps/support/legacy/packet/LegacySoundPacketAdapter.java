@@ -4,7 +4,7 @@ import com.comphenix.packetwrapper.WrapperPlayServerNamedSoundEffect;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.reflect.StructureModifier;
 import com.comphenix.protocol.wrappers.EnumWrappers.SoundCategory;
-import it.gamerover.nfps.ServerVersion;
+import it.gamerover.nfps.reflection.ServerVersion;
 import it.gamerover.nfps.packet.SoundPacketAdapter;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

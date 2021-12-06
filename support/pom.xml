@@ -31,4 +31,13 @@
         <module>flat</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>it.gamerover.nofootstep</groupId>
+            <artifactId>NoFootstepSound-Reflection</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
 </project>

@@ -1,7 +1,7 @@
 package it.gamerover.nfps.support.flat;
 
 import it.gamerover.nfps.CoreHandler;
-import it.gamerover.nfps.ServerVersion;
+import it.gamerover.nfps.reflection.ServerVersion;
 import it.gamerover.nfps.support.flat.packet.FlatSoundPacketAdapter;
 import it.gamerover.nfps.packet.SoundPacketAdapter;
 import org.bukkit.plugin.Plugin;

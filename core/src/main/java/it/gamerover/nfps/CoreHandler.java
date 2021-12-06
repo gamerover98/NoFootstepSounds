@@ -7,6 +7,7 @@ import it.gamerover.nfps.config.ConfigManager;
 import it.gamerover.nfps.packet.SoundPacketAdapter;
 import it.gamerover.nfps.reflection.ReflectionContainer;
 import it.gamerover.nfps.reflection.ReflectionException;
+import it.gamerover.nfps.reflection.ServerVersion;
 import it.gamerover.nfps.reflection.minecraft.MCMinecraftVersion;
 import lombok.Getter;
 import org.bukkit.plugin.Plugin;

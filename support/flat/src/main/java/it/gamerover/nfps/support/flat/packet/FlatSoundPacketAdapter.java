@@ -2,7 +2,7 @@ package it.gamerover.nfps.support.flat.packet;
 
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.EnumWrappers.SoundCategory;
-import it.gamerover.nfps.ServerVersion;
+import it.gamerover.nfps.reflection.ServerVersion;
 import it.gamerover.nfps.packet.SoundPacketAdapter;
 import it.gamerover.nfps.support.interfaces.ISoundChecker;
 import org.bukkit.Sound;

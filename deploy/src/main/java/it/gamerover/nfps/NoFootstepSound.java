@@ -1,5 +1,6 @@
 package it.gamerover.nfps;
 
+import it.gamerover.nfps.reflection.ServerVersion;
 import it.gamerover.nfps.support.flat.FlatHandler;
 import it.gamerover.nfps.support.legacy.LegacyHandler;
 import it.gamerover.nfps.reflection.ReflectionException;
