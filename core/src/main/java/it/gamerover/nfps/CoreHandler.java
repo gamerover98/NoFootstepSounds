@@ -8,7 +8,6 @@ import it.gamerover.nfps.packet.SoundPacketAdapter;
 import it.gamerover.nfps.reflection.ReflectionContainer;
 import it.gamerover.nfps.reflection.ReflectionException;
 import it.gamerover.nfps.reflection.ServerVersion;
-import it.gamerover.nfps.reflection.minecraft.MCMinecraftVersion;
 import lombok.Getter;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xyz.tozymc.spigot.api.command.CommandController;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class CoreHandler {
@@ -138,38 +138,38 @@ public abstract class CoreHandler {
 
     /**
      * Initialize the CoreHandler by loading static stuff like reflections and server version.
-     * @throws ReflectionException Thrown due to a reflections' error.
+     *
+     * @param plugin The not-null plugin instance.
+     * @throws ReflectionException Thrown due to a reflection's error.
      */
-    static void init(boolean force) throws ReflectionException {
+    static void init(@NotNull Plugin plugin) throws ReflectionException {
 
         if (reflectionContainer == null) {
             reflectionContainer = new ReflectionContainer();
         }
 
-        String stringVersion;
-        MCMinecraftVersion minecraftVersion = reflectionContainer.getMinecraft().getMinecraftVersion();
+        ServerVersion runningVersion = ServerVersion.getRunningServerVersion(reflectionContainer);
+        Logger logger = plugin.getLogger();
 
-        if (minecraftVersion != null) {
-            stringVersion = minecraftVersion.getReleaseTarget();
+        // The server running with an unknown server version.
+        if (runningVersion == null) {
+
+            ServerVersion latestVersion = ServerVersion.getLatest(false);
+            String message = "Cannot find the current server version, "
+                    + "attempting to start the plugin with the latest ("
+                    + latestVersion.getVersion() + ") supported version ...";
+
+            logger.log(Level.WARNING, message);
+            runningVersion = latestVersion;
+
         } else {
-            stringVersion = reflectionContainer.getMinecraft().getMinecraftServer().getVersion();
-        }
 
-        if (stringVersion != null) {
-            serverVersion = ServerVersion.getVersion(stringVersion);
-        }
-
-        if (serverVersion == null) {
-
-            stringVersion = "unknown";
-
-            if (force) {
-                serverVersion = ServerVersion.getLatest(false);
-            } else {
-                throw new ReflectionException(stringVersion);
-            }
+            String message = "Detected " + runningVersion.getVersion() + " server version";
+            logger.log(Level.INFO, message);
 
         }
+
+        serverVersion = runningVersion;
 
     }
 

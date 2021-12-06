@@ -1,5 +1,7 @@
 package it.gamerover.nfps.reflection;
 
+import it.gamerover.nfps.reflection.minecraft.MCMinecraftServer;
+import it.gamerover.nfps.reflection.minecraft.MCMinecraftVersion;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -59,7 +61,7 @@ public enum ServerVersion {
     V1_9_1 ("1.9.1",  108, 175, true),
     V1_9   ("1.9",    107, 169, true),
 
-    //There is no DataVersion for minecraft 1.8.8
+    // There is no DataVersion for minecraft 1.8.8
     V1_8_8 ("1.8.8",  47, 0, true);
 
     /**
@@ -68,14 +70,66 @@ public enum ServerVersion {
     @Getter @NotNull
     private final String version;
 
+    /**
+     * A protocol version number (PVN) is an integer used to check for
+     * incompatibilities between the player's client and the server
+     * they are trying to connect to.
+     */
     @Getter
     private final int protocolVersion;
 
+    /**
+     * A data version, also known as a world version, is a positive integer
+     * used in a world saved data to denote a specific version, and determines
+     * whether the player should be warned about opening that world due
+     * to client version incompatibilities.
+     */
     @Getter
     private final int dataVersion;
 
+    /**
+     * True:  The server version is 1.12.2 or prior.
+     * False: The server version is 1.13 or upper.
+     */
     @Getter
     private final boolean legacy;
+
+    //
+    // STATIC METHODS
+    //
+
+    /**
+     * Gets the current running ServerVersion instance.
+     *
+     * @param container The not-null Reflection Container instance.
+     * @return The current running ServerVersion instance.
+     *         Null if the server version is not supported.
+     */
+    @Nullable
+    public static ServerVersion getRunningServerVersion(@NotNull ReflectionContainer container) {
+
+        ServerVersion result = null;
+        String stringVersion;
+
+        ReflectionContainer.Minecraft minecraft = container.getMinecraft();
+        MCMinecraftVersion minecraftVersion = minecraft.getMinecraftVersion();
+
+        if (minecraftVersion != null) {
+            stringVersion = minecraftVersion.getReleaseTarget();
+        } else {
+
+            MCMinecraftServer minecraftServer = minecraft.getMinecraftServer();
+            stringVersion = minecraftServer.getVersion();
+
+        }
+
+        if (stringVersion != null) {
+            result = ServerVersion.getVersion(stringVersion);
+        }
+
+        return result;
+
+    }
 
     @Nullable
     public static ServerVersion getVersionWithDataVersion(int dataVersion) {
