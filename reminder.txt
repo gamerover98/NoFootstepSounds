@@ -21,4 +21,4 @@ deploy/target/No-Footstep-Sound-*.*.jar
 ---------------
 
 Edit project version with this command at the root of the project:
- mvn versions:set -DnewVersion="1.2"
+ mvn versions:set -DnewVersion="1.3"
