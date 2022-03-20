@@ -13,7 +13,7 @@
     <artifactId>NoFootstepSound-Deploy</artifactId>
 
     <build>
-        <finalName>No-Footstep-Sound-${project.version}</finalName>
+        <finalName>NoFootstepSounds-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
