@@ -11,12 +11,19 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * You can find protocol and data version
- * at https://minecraft.gamepedia.com/Protocol_version
+ * at <a href="https://minecraft.gamepedia.com/Protocol_version">Minecraft protocol versions</a>
  */
 @ToString
 @SuppressWarnings({"squid:S00100", "unused"})
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public enum ServerVersion {
+
+    // Add here the following versions ...
+    // From Minecraft 1.19.3, Mojang decided to ruin the developers' life.
+    V1_19_3("1.19.3", 761, 3218, false),
+    V1_19_2("1.19.2", 760, 3120, false),
+    V1_19_1("1.19.1", 760, 3117, false),
+    V1_19  ("1.19",   759, 3105, false),
 
     V1_18_2("1.18.2", 758, 2975, false),
     V1_18_1("1.18.1", 757, 2865, false),
@@ -213,6 +220,18 @@ public enum ServerVersion {
         }
 
         return v1.isFlat() && v2.isFlat();
+    }
+
+    @SuppressWarnings("DuplicatedCode") // prevents checking code duplicates
+    public static boolean is1_19(@NotNull ServerVersion version) {
+
+        switch (version) {
+            case V1_19:
+            case V1_19_1:
+            case V1_19_2:
+            case V1_19_3: return true;
+            default: return false;
+        }
 
     }
 

@@ -166,6 +166,13 @@
             <version>1.3</version>
             <scope>compile</scope>
         </dependency>
+		
+		        <dependency>
+            <groupId>it.gamerover.nofootstep</groupId>
+            <artifactId>NoFootstepSound-Support-v1_19</artifactId>
+            <version>1.3</version>
+            <scope>compile</scope>
+        </dependency>
 
         <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
