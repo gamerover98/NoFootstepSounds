@@ -7,7 +7,7 @@
     <parent>
         <groupId>it.gamerover.nofootstep</groupId>
         <artifactId>NoFootstepSound</artifactId>
-        <version>1.3</version>
+        <version>1.4</version>
     </parent>
 
     <artifactId>NoFootstepSound-Support</artifactId>
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Reflection</artifactId>
-            <version>1.3</version>
+            <version>1.4</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
