@@ -21,16 +21,16 @@ no one's stopping you to try it on your server ✨!
 
 ## Commands and permissions
 
-| Main command | Aliases | description | permission |
-| ------ | ------ | ------ | ------ |
-| /NoFootstepSound <arg> | /nfs, /nfps, /nfsp | list of plugin sub-commands | ``nfps`` |
+| Main command           | Aliases            | description                 | permission |
+|------------------------|--------------------|-----------------------------|------------|
+| /NoFootstepSound <arg> | /nfs, /nfps, /nfsp | list of plugin sub-commands | ``nfps``   |
 
-| sub-command | description | permission |
-| ------ | ------ | ------ |
-| /nfps add <world-name> | Add a world to the world list | ``nfps.add`` |
+| sub-command               | description                        | permission      |
+|---------------------------|------------------------------------|-----------------|
+| /nfps add <world-name>    | Add a world to the world list      | ``nfps.add``    |
 | /nfps remove <world-name> | Remove a world from the world list | ``nfps.remove`` |
-| /nfps list | List of config worlds | ``nfps.list`` |
-| /nfps reload | Reload the config file | ``nfps.reload`` |
+| /nfps list                | List of config worlds              | ``nfps.list``   |
+| /nfps reload              | Reload the config file             | ``nfps.reload`` |
 
 ## License
 GNU General Public License v3.0
