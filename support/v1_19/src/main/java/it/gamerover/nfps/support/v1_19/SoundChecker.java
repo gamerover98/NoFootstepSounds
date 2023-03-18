@@ -92,6 +92,7 @@ public class SoundChecker  implements ISoundChecker<Sound> {
             case BLOCK_HANGING_SIGN_STEP:
             case BLOCK_NETHER_WOOD_HANGING_SIGN_STEP:
             case BLOCK_NETHER_WOOD_STEP: return true;
+            // TODO: Add 1.19.3 and 1.19.4 missing mobs
             default: return false;
         }
 
