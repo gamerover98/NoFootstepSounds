@@ -11,12 +11,12 @@ no one's stopping you to try it on your server ✨!
 
 ## Prerequisites
 
-- A Spigot/Paper/Purpur server from 1.8.8 to 1.18.x.
+- A Spigot/Paper/Purpur server from 1.8.8 to 1.19.x.
 - [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/) plugin.
 
 ## Installation
 
-- Put the **No-Footstep-Sound-1.3.jar** file in your plugins' folder.
+- Put the **No-Footstep-Sound-1.5.jar** file in your plugins' folder.
 - Start/Restart the server or load it with the Plugman plugin.
 
 ## Commands and permissions
