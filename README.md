@@ -11,7 +11,7 @@ no one's stopping you to try it on your server ✨!
 
 ## Prerequisites
 
-- A Spigot/Paper/Purpur server from 1.8.8 to 1.19.x.
+- A Spigot/Paper/Purpur server from 1.8.8 to the latest minecraft version.
 - [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/) plugin.
 
 ## Installation
