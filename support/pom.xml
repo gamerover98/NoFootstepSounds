@@ -28,6 +28,7 @@
         <module>v1_17</module>
         <module>v1_18</module>
         <module>v1_19</module>
+        <module>v1_20</module>
         <module>legacy</module>
         <module>flat</module>
     </modules>

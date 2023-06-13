@@ -103,50 +103,50 @@
             <version>1.5</version>
             <scope>compile</scope>
         </dependency>
-		
-		<dependency>
+
+        <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_10</artifactId>
             <version>1.5</version>
             <scope>compile</scope>
         </dependency>
-		
-		<dependency>
+
+        <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_11</artifactId>
             <version>1.5</version>
             <scope>compile</scope>
         </dependency>
-		
-		<dependency>
+
+        <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_12</artifactId>
             <version>1.5</version>
             <scope>compile</scope>
         </dependency>
 
-		<dependency>
+        <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_13</artifactId>
             <version>1.5</version>
             <scope>compile</scope>
         </dependency>
-		
-		<dependency>
+
+        <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_14</artifactId>
             <version>1.5</version>
             <scope>compile</scope>
         </dependency>
-		
-		<dependency>
+
+        <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_15</artifactId>
             <version>1.5</version>
             <scope>compile</scope>
         </dependency>
-		
-		<dependency>
+
+        <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_16</artifactId>
             <version>1.5</version>
@@ -166,10 +166,17 @@
             <version>1.5</version>
             <scope>compile</scope>
         </dependency>
-		
-		        <dependency>
+
+        <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_19</artifactId>
+            <version>1.5</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>it.gamerover.nofootstep</groupId>
+            <artifactId>NoFootstepSound-Support-v1_20</artifactId>
             <version>1.5</version>
             <scope>compile</scope>
         </dependency>

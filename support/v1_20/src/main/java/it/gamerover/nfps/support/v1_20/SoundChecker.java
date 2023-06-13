@@ -1,4 +1,4 @@
-package it.gamerover.nfps.support.v1_19;
+package it.gamerover.nfps.support.v1_20;
 
 import it.gamerover.nfps.support.interfaces.ISoundChecker;
 import org.bukkit.Sound;
@@ -91,7 +91,14 @@ public class SoundChecker  implements ISoundChecker<Sound> {
             case BLOCK_CHISELED_BOOKSHELF_STEP:
             case BLOCK_HANGING_SIGN_STEP:
             case BLOCK_NETHER_WOOD_HANGING_SIGN_STEP:
-            case BLOCK_NETHER_WOOD_STEP: return true;
+            case BLOCK_NETHER_WOOD_STEP:
+            case BLOCK_CHERRY_LEAVES_STEP:
+            case BLOCK_CHERRY_SAPLING_STEP:
+            case BLOCK_CHERRY_WOOD_STEP:
+            case BLOCK_DECORATED_POT_STEP:
+            case BLOCK_PINK_PETALS_STEP:
+            case BLOCK_SUSPICIOUS_GRAVEL_STEP:
+            case BLOCK_SUSPICIOUS_SAND_STEP: return true;
             default: return false;
         }
 

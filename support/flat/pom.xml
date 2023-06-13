@@ -77,14 +77,14 @@
             <version>1.5</version>
             <scope>provided</scope>
         </dependency>
-		
+
         <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_14</artifactId>
             <version>1.5</version>
             <scope>provided</scope>
         </dependency>
-		
+
         <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_15</artifactId>
@@ -112,10 +112,17 @@
             <version>1.5</version>
             <scope>provided</scope>
         </dependency>
-		
-		        <dependency>
+
+        <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-v1_19</artifactId>
+            <version>1.5</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>it.gamerover.nofootstep</groupId>
+            <artifactId>NoFootstepSound-Support-v1_20</artifactId>
             <version>1.5</version>
             <scope>provided</scope>
         </dependency>
