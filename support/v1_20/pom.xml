@@ -7,7 +7,7 @@
     <parent>
         <groupId>it.gamerover.nofootstep</groupId>
         <artifactId>NoFootstepSound-Support</artifactId>
-        <version>1.5</version>
+        <version>1.6</version>
     </parent>
 
     <artifactId>NoFootstepSound-Support-v1_20</artifactId>
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>it.gamerover.nofootstep</groupId>
             <artifactId>NoFootstepSound-Support-Interfaces</artifactId>
-            <version>1.5</version>
+            <version>1.6</version>
             <scope>provided</scope>
         </dependency>
 
